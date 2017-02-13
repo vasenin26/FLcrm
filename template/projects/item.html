@@ -1,0 +1,40 @@
+
+<tr>
+  <td>
+    <?=$item->projects_id?>
+  </td>
+  <td>
+    <?=$item->projects_createdon?>
+  </td>
+  <td>
+    <?=$item->projects_name?>
+  </td>
+  <td>
+    <? if ( $item->customers_id ) : ?>
+    <a class="btn btn-default glyphicon glyphicon glyphicon-cog" href="/?c=people&a=update&id=<?=$item->customers_id?>"></a>
+    <?=$item->customers_name?> (<?=$item->customers_id?>)
+
+    <? endif; ?>
+  </td>
+  <td>
+    <?=$item->projects_cost?> руб.
+  </td>
+  <td>
+    <? if( $item->projects_paidon ) :?>
+    <?=$item->projects_paidon?> руб.
+    <? endif; ?>
+    <a class="glyphicon glyphicon-plus btn btn-default" href="<?=$this->makeUrl(Array(
+       'c' => 'projects',
+       'a' => 'addpayment',
+       'id' => $item->projects_id
+       ))?>"></a>
+  </td>
+  <td>
+    <a class="btn btn-default <?=($item->projects_closed?'btn-success':'')?> glyphicon glyphicon-ok" href="<?=$this->makeUrl(Array(
+       'q' => 'projects',
+       'f' => 'close',
+       'id' => $item->projects_id
+       ))?>"></a>
+    <a class="btn btn-default glyphicon glyphicon-eye-open" href="<?=$this->makeUrl(Array('a' => 'view', 'id' => $item->id ))?>"></a>
+  </td>
+</tr>

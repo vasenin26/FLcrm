@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <?=$this->controller->runMethod('main', 'head')?>
+    </head>
+    <body>
+        <?=$this->controller->runMethod('main', 'menu')?>
+
+        <div class="container">
+
+            <div class="page-header">
+                <h1>Удаление элемента</h1>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="alert alert-danger">
+                        Вы действительно хотите удалить элемент <?=$name?>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <a class="btn btn-danger" href="<?=$drop_link?>">Удалить</a>
+                    <a class="btn btn-primary" href="/">Домой</a>
+                </div>
+            </div>
+
+
+        </div><!-- /.container -->
+
+    </body>
+</html>

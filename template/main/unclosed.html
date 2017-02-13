@@ -1,0 +1,28 @@
+
+<tr>
+  <td>
+    <?=$item->id?>
+  </td>
+  <td>
+    
+    <!--<a class="btn btn-default <?=($item->projects_closed?'btn-success':'')?> glyphicon glyphicon-ok" href="<?=$this->makeUrl(Array(
+       'q' => 'projects',
+       'f' => 'close',
+       'id' => $item->projects_id
+       ))?>"></a>--><?=$item->deadline?>
+  </td>
+  <td>
+    <a title="Посмотреть проект" class="btn btn-default glyphicon glyphicon-eye-open" href="/?c=projects&a=view&id=<?=$item->projects_id?>"></a>
+    <?=$item->name?>
+  </td>
+  <td>
+    <?=($item->cost - $item->paidon)?> руб.
+  </td>
+  <td>
+    <? if ( $item->customers_id ) : ?>
+    <a class="btn btn-default glyphicon glyphicon glyphicon-cog" href="/?c=people&a=update&id=<?=$item->customers_id?>"></a>
+    <?=$item->customers_name?> (<?=$item->customers_id?>)
+
+    <? endif; ?>
+  </td>
+</tr>

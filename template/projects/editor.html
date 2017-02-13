@@ -1,0 +1,102 @@
+
+<html>
+  <head>
+    <?=$this->controller->runMethod('main', 'head')?>
+
+    <script>
+      var customers = <?= $customers ?> ;
+    </script>
+
+  </head>
+  <body>
+    <?=$this->controller->runMethod('main', 'menu')?>
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1>Проект</h1>
+      </div>
+
+      <form class="form-horizontal" method="POST" action="/?c=projects&a=update">
+        <input type="hidden" id="id" name="id" class="form-control" value="<?=$id?>">
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="type">Название проекта</label>
+          <div class="col-md-8">
+            <input type="text" id="name" name="name" class="form-control" value="<?=$this->encode($name)?>" maxlength="100">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="deviceid">Номер контрагента или имя</label>
+          <div class="col-md-4">
+            <input type="text" id="customerid" name="customerid" class="form-control" value="<?=$customerid?>" maxlength="100">
+          </div>
+          <script>
+                    $('#customerid').typeahead({
+              source: customers
+            }).attr('AUTOCOMPLETE', 'off');
+          </script>
+          <?php
+          if ($customername):
+          ?>
+          <div class="col-md-4">
+            <?=$customername?> <a class="glyphicon glyphicon-eye-open btn btn-default" href="/?c=people&a=update&id=<?=$customerid?>"></a>
+          </div>
+          <?php
+          endif;
+          ?>
+        </div>
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="dsc">Описание проекта</label>
+          <div class="col-md-8">
+            <textarea id="dsc" name="dsc" rows="12" class="form-control"><?=$this->encode($dsc)?></textarea>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="deadline">Дедлайн</label>
+          <div class="col-md-3">
+            <div class='input-group date' id='deadline'>
+              <input type='text' class="form-control" data-format="yyyy-MM-dd HH:mm:ss" name="deadline" value="<?=$deadline?>" >
+              <span class="input-group-addon">
+                <span class="glyphicon glyphicon-calendar"></span>
+              </span>
+            </div>
+          </div>
+        </div>
+        <script>
+          $('#deadline').datetimepicker({
+            locale: 'sql'
+          });
+        </script>
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="deadline">Дата закрытия проекта</label>
+          <div class="col-md-3">
+            <div class='input-group date' id='closedon'>
+              <input type='text' class="form-control" data-format="yyyy-MM-dd HH:mm:ss" name="closedon" value="<?=$closedon?>" >
+              <span class="input-group-addon">
+                <span class="glyphicon glyphicon-calendar"></span>
+              </span>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="checkbox">
+              <input name="closed" type="hidden" value="0">
+              <label><input type="checkbox" id="notify" name="closed" value="1" <?=($closed?'checked="checked"':'')?>>Проект закрыт</label>
+            </div>
+          </div>
+        </div>
+        <script>
+          $('#closedon').datetimepicker({
+            locale: 'sql'
+          });
+        </script>
+        <div class="form-group">
+          <div class="col-md-offset-4 col-md-8">
+            <button type="submit" class="btn btn-primary" name="save" value="true">Сохранить</button>
+          </div>
+        </div>
+      </form>
+
+    </div><!-- /.container -->
+
+  </body>
+</html>
